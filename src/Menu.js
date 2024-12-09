@@ -1,11 +1,39 @@
 import React, { useState } from "react";
-import { Snowflake, Gift, Coffee, Wine, UtensilsCrossed } from "lucide-react";
+import {
+  Snowflake,
+  CandyCane,
+  Coffee,
+  Wine,
+  UtensilsCrossed,
+  Beer,
+} from "lucide-react";
 
 const ChristmasBarMenu = () => {
   const [selectedCategory, setSelectedCategory] = useState("cocktails");
 
   const menuItems = {
     cocktails: [
+      // Holiday Specials
+      {
+        name: "Boozy Hot Chocolate",
+        description: "Dark chocolate, choice of spirit, whipped cream",
+        isSpecial: true,
+      },
+      {
+        name: "Brandy Alexander",
+        description: "Brandy, crème de cacao, cream, freshly grated nutmeg",
+        isSpecial: true,
+      },
+      {
+        name: "Irish Coffee",
+        description: "Whiskey, coffee, brown sugar, whipped cream",
+        isSpecial: true,
+      },
+      {
+        name: "Chocolate Martini",
+        description: "Vodka, crème de cacao, chocolate liqueur",
+        isSpecial: true,
+      },
       // Whiskey
       {
         name: "Highball",
@@ -44,37 +72,40 @@ const ChristmasBarMenu = () => {
         name: "Vodka Sour",
         description: "Vodka, lemon juice, simple syrup, egg white",
       },
-      // Holiday Specials
-      {
-        name: "Boozy Hot Chocolate",
-        description: "Dark chocolate, choice of spirit, whipped cream",
-        isSpecial: true,
-      },
-      {
-        name: "Brandy Alexander",
-        description: "Brandy, crème de cacao, cream, freshly grated nutmeg",
-        isSpecial: true,
-      },
-      {
-        name: "Irish Coffee",
-        description: "Whiskey, coffee, brown sugar, whipped cream",
-        isSpecial: true,
-      },
-      {
-        name: "Chocolate Martini",
-        description: "Vodka, crème de cacao, chocolate liqueur",
-        isSpecial: true,
-      },
+    ],
+    alcohols: [
       {
         name: "Spiced Eggnog",
         description: "Traditional eggnog with holiday spices and rum",
         isSpecial: true,
+      },
+      {
+        name: "Sierra Nevada Celebration 12oz - 6.8%",
+        description:
+          "Freshly picked hops, rushed from farm to brewery, fill Celebration IPA with powerful citrus and pine flavors",
+        isSpecial: true,
+      },
+      {
+        name: "St. Bernardus Christmas Ale 12oz - 9.8%",
+        description:
+          "An intensely dark beer with a full, yet slightly fruity flavour",
+        isSpecial: true,
+      },
+      {
+        name: "Pabst Blue Ribbon 24oz - 4.7%",
+        description: "Classic American lager",
       },
     ],
     hotDrinks: [
       {
         name: "Hot Cocoa",
         description: "Rich hot chocolate, topped with whipped cream",
+        isSpecial: true,
+      },
+      {
+        name: "Cardamom Mango Lassi",
+        description: "Indian yogurt-based beverage",
+        isSpecial: true,
       },
     ],
     snacks: [
@@ -117,6 +148,18 @@ const ChristmasBarMenu = () => {
             Cocktails
           </button>
           <button
+            onClick={() => setSelectedCategory("alcohols")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors
+              ${
+                selectedCategory === "alcohols"
+                  ? "bg-red-600 text-white border-red-600"
+                  : "border-red-600 text-red-600 hover:bg-red-50"
+              }`}
+          >
+            <Beer className="w-4 h-4" />
+            Beverages
+          </button>
+          <button
             onClick={() => setSelectedCategory("hotDrinks")}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors
               ${
@@ -154,8 +197,13 @@ const ChristmasBarMenu = () => {
               }`}
             >
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-lg">{item.name}</h3>
-                {item.isSpecial && <Gift className="w-4 h-4 text-red-500" />}
+                <h3 className="font-semibold text-lg">
+                  {item.name}
+                  {"  "}
+                  {item.isSpecial && (
+                    <CandyCane className="w-4 h-4 text-red-500" />
+                  )}
+                </h3>
               </div>
               <p className="text-gray-600 text-sm mt-1">{item.description}</p>
             </div>
